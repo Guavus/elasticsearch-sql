@@ -146,6 +146,7 @@ public class Condition extends Where {
             case "<=":
                 this.opear = OPEAR.LTE;
                 break;
+            case "!=":
             case "<>":
                 this.opear = OPEAR.N;
                 break;
