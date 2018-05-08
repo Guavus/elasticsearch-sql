@@ -145,6 +145,7 @@ public abstract class Maker {
 			String queryStr = ((String) value);
             queryStr = queryStr.replace('%', '*').replace('_', '?');
             queryStr = queryStr.replace("&PERCENT","%").replace("&UNDERSCORE","_");
+            queryStr = queryStr.toLowerCase();
 			x = QueryBuilders.wildcardQuery(name, queryStr);
 			break;
 		case GT:
