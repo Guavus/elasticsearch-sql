@@ -1,6 +1,7 @@
 package org.nlpcn.es4sql.query.maker;
 
 import java.io.IOException;
+import java.lang.ClassCastException;
 import java.util.*;
 
 import com.alibaba.druid.sql.ast.SQLExpr;
@@ -136,12 +137,20 @@ public abstract class Maker {
 				// TODO, maybe use term filter when not analayzed field avalaible to make exact matching?
 				// using matchPhrase to achieve equallity.
 				// matchPhrase still have some disatvantegs, f.e search for 'word' will match 'some word'
-                String queryStr = ((String) value);
-                if(queryStr.isEmpty())
-                {
-                    name = name.concat(".keyword");
+                if (value instanceof String) {
+                   try{
+                        String queryStr = ((String) value);
+                        if(queryStr.isEmpty())
+                        {
+                            name = name.concat(".keyword");
+                        }
+                    }catch(ClassCastException e){
+                        e.printStackTrace();
+                    }  
                 }
+                  
 				x = QueryBuilders.matchPhraseQuery(name, value);
+              
 
 				break;
 			}
