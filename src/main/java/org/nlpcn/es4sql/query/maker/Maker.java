@@ -136,10 +136,11 @@ public abstract class Maker {
 				// TODO, maybe use term filter when not analayzed field avalaible to make exact matching?
 				// using matchPhrase to achieve equallity.
 				// matchPhrase still have some disatvantegs, f.e search for 'word' will match 'some word'
-                String queryStr = ((String) value);
-                if(queryStr.isEmpty())
-                {
-                    name = name.concat(".keyword");
+                if(value instanceof String) {
+                    String queryStr = ((String) value);
+                    if (queryStr.isEmpty()) {
+                        name = name.concat(".keyword");
+                    }
                 }
 				x = QueryBuilders.matchPhraseQuery(name, value);
 
