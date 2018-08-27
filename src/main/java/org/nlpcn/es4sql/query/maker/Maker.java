@@ -119,6 +119,7 @@ public abstract class Maker {
 
 	private ToXContent make(Condition cond, String name, Object value) throws SqlParseException {
 		ToXContent x = null;
+        name = name.replaceAll("`","");
 		switch (cond.getOpear()) {
 		case ISN:
 		case IS:
